@@ -15,25 +15,25 @@ def performaAnalisiPosizionale(array):
             "mediana": np.percentile(array, 50)
         }
 
-def analizzaArray1D(arrei):
+# def analizzaArray1D(arrei):
     
-    risultato  = {}
+#     risultato  = {}
     
-    print("Hai scelto 1D")
-    print("1. Statistiche base")
-    print("2. Analisi posizionale")
-    print("0. Torna indietro")
+#     print("Hai scelto 1D")
+#     print("1. Statistiche base")
+#     print("2. Analisi posizionale")
+#     print("0. Torna indietro")
 
-    scelta = input("Scelta: ")
+#     scelta = input("Scelta: ")
     
-    match scelta:
-        case "0":
-            return
-        case "1":
-            risultato = calcolaStatisticheBase(arrei)
-            print("Le statistiche base sono:", risultato)
-        case "2":
-            risultato = performaAnalisiPosizionale(arrei)
-            print("L'Analisi Posizionale è:", risultato)
-        case _:
-            print("")
+#     match scelta:
+#         case "0":
+#             return
+#         case "1":
+#             risultato = calcolaStatisticheBase(arrei)
+#             print("Le statistiche base sono:", risultato)
+#         case "2":
+#             risultato = performaAnalisiPosizionale(arrei)
+#             print("L'Analisi Posizionale è:", risultato)
+#         case _:
+#             print("")
