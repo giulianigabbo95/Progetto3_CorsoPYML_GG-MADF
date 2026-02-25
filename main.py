@@ -34,7 +34,7 @@ def carica_lista_matrici(nome_file):
             pattern = r"\[[\d, \s\[\]]+\]"
             match = re.findall(pattern, contenuto, re.DOTALL)
             
-            for m in match:
+            for m in match: #<----------------------------------------------------------- NON PUOI CICLARE NEL FILE
                 try:
                     # Parsing str e cast in array NumPy
                     matrice_pulita = np.array(ast.literal_eval(m))
@@ -45,15 +45,35 @@ def carica_lista_matrici(nome_file):
     except FileNotFoundError:
         return []
     
-import numpy as np
+def operazioni(r, c, matrice, operazione):
+    r, c = matrice.shape #<----------------------------------------------------------- NON LE USI
+    match operazione:
+        case "axis_sum_cols":
+            risultato = np.sum(matrice, axis = 0)
+            print("Somme di tutte le colonne:", risultato)
+            return risultato, "Tutte le colonne" #<----------------------------------------------------------- NON HA SENSO
+        case "axis_sum_rows":
+            risultato = np.sum(matrice, axis = 1)
+            print("Somme di tutte le righe:", risultato)
+            return risultato, "Tutte le righe"
+        case "axis_mean_cols":
+            risultato = np.mean(matrice, axis = 0)
+            return risultato, "Medie colonne"
+        case "axis_mean_rows":
+            risultato = np.mean(matrice, axis = 1)
+            return risultato, "Medie righe"
+        case _:
+            print("Operazione non riconosciuta.")
+            return None
+
 
 def play():
     matrice = None
     r, c = 0, 0
-    dimensione = "" 
+    dimensione = "" #<----------------------------------------------------------- NON INIZIALIZZATA FUORI DAL SUCCESSIVO IF
     
     while True:
-        if matrice is None:
+        if matrice is None: #<----------------------------------------------------------- NON CI STA ELSE
             print("\n--- BENVENUTO ---")
             print("1. Scegli una Matrice dal file di log")
             print("0. Esci")
@@ -96,7 +116,7 @@ def play():
                 continue
 
         # --- GESTIONE MATRICE 1D ---
-        if dimensione == "1D":
+        if dimensione == "1D": #<----------------------------------------------------------- NON INIZIALIZZATA SEMPRE
             print("NULLA")
             pass
 
@@ -115,13 +135,13 @@ def play():
 
             if scelta == '2':
                 print(matrice,"\n")
-                risultato_somma = operazioni(r,c, matrice, "axis_sum_cols")
+                risultato_somma = operazioni(r,c, matrice, "axis_sum_cols") 
                 if risultato_somma is not None:
                     salva_su_file(FILE_OUTPUT, "Somma Colonne", risultato_somma)
                     
             elif scelta == '3':
                 print(matrice,"\n")
-                risultato_somma = operazioni(r,c, matrice, "axis_sum_rows")
+                risultato_somma = operazioni(r,c, matrice, "axis_sum_rows") #<----------------------------------------------------------- NON SERVONO TUTTI QUESTI PARAMETRI
                 if risultato_somma is not None:
                     salva_su_file(FILE_OUTPUT, "Somma Righe", risultato_somma)
                     
