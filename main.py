@@ -94,26 +94,26 @@ def play():
                     indice = int(input("Inserisci il numero della matrice da usare: "))
                     if 0 <= indice < len(lista):
                         matrice = lista[indice]
-                        dimensione = "2D" if matrice.ndim == 2 else "1D"
+                        dimensione = "2D" if matrice.ndim == 2 else "1D" #<----------------------------------------------------------- NON SERVE
                         
-                        if dimensione == "2D":
-                            r, c = matrice.shape
-                            print(f"Hai selezionato una matrice 2D ({r}x{c}).")
-                        else:
-                            r, c = 1, matrice.shape[0]
-                            print(f"Hai selezionato una matrice 1D ({c} elementi).")
-                        continue # Torna al ciclo per entrare nei menu 1D/2D
+                        if dimensione == "2D": #<----------------------------------------------------------- NON SERVE
+                            r, c = matrice.shape #<----------------------------------------------------------- NON SERVE
+                            print(f"Hai selezionato una matrice 2D ({r}x{c}).") #<----------------------------------------------------------- NON SERVE
+                        else: #<----------------------------------------------------------- NON SERVE
+                            r, c = 1, matrice.shape[0] #<----------------------------------------------------------- NON SERVE
+                            print(f"Hai selezionato una matrice 1D ({c} elementi).") #<----------------------------------------------------------- NON SERVE
+                        continue # Torna al ciclo per entrare nei menu 1D/2D #<----------------------------------------------------------- NON SERVE
                     else:
                         print("Indice non valido.")
-                        matrice = None
+                        matrice = None #<----------------------------------------------------------- NON SERVE
                 except ValueError:
                     print("Inserisci un numero valido!")
-                    continue
+                    continue #<----------------------------------------------------------- NON SERVE
             
             elif scelta_iniziale == '0':
                 break
             else:
-                continue
+                continue #<----------------------------------------------------------- NON HA SENSO
 
         # --- GESTIONE MATRICE 1D ---
         if dimensione == "1D": #<----------------------------------------------------------- NON INIZIALIZZATA SEMPRE

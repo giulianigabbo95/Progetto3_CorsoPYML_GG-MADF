@@ -39,13 +39,13 @@ def calcolaSommaColonne(arrei):
     print("Somme di tutte le colonne:", risultato)
     return risultato, "Somma colonne"
 
-def calcolaSommaColonne(arrei):
+def calcolaSommaRighe(arrei):
     risultato = np.sum(arrei, axis = 1)
     print("Somme di tutte le righe:", risultato)
     return risultato, "Somma righe"
 
 def calcolaMediaColonne(arrei):
-    risultato = np.mean(matrice, axis = 0)
+    risultato = np.mean(arrei, axis = 0)
     return risultato, "Medie colonne"
 
 def calcolaMediaRighe(arrei):
@@ -75,7 +75,7 @@ def analizzaArray1D(arrei):
 
 def salvaFile(nome_file, operazione, dati):
     with open(nome_file, "a", encoding = "utf-8") as file:
-        file.write("Operazione:", operazione, "-", dati,"\n")
+        file.write("Operazione: " + operazione + " - " + str(dati) + "\n")
 
 def caricaListaMatrici(nome_file):
     matrici_trovate = []
@@ -119,7 +119,7 @@ def analizzaArray2D(matrice):
                 salvaFile(FILE_OUTPUT, "Somma Colonne", risultato_somma)
         case '2':
             print(matrice, "\n")
-            risultato_somma = calcolaSommaColonne(matrice)
+            risultato_somma = calcolaSommaRighe(matrice)
             if risultato_somma is not None:
                 salvaFile(FILE_OUTPUT, "Somma Righe", risultato_somma)
         case '3':
@@ -145,7 +145,7 @@ def analizzaArray2D(matrice):
 def apriMenu(metrix): # -> dimensione
     # 158 - if matrice is None:
     # ...
-    # 209 - break
+    # 199 - dimensione = matrice.ndim
     pass
 
 
@@ -183,30 +183,20 @@ while True:
                     indice = int(input("Inserisci il numero della matrice da usare: "))
                     if 0 <= indice < len(lista):
                         matrice = lista[indice]
-                        if m.ndim != 2:
-                            tipo = "1D"
-                        else:
-                            tipo ="2D"
-                        if dimensione == "1D":
-                            r, c = 1, matrice.shape[0]
-                            print("Hai selezionato una matrice 1D", c, "elementi")
-                        else:
-                            r, c = matrice.shape
-                            print("Hai selezionato una matrice 2D", r, "x", c)
-                        continue
+                        print("Matrice selezionata.")
                     else:
                         print("Indice non valido.")
                         matrice = None
                 except ValueError:
                     print("Inserisci un numero valido!")
-                    continue
             
             case _:
                 continue
     else:
-        print("Dimensione dove è stato definito per continuare?")
-        print("Va a Loop senza BREAK")
-        break
+        #print("Dimensione dove è stato definito per continuare?")
+        #print("Va a Loop senza BREAK")
+        #break
+        dimensione = matrice.ndim
     
     match dimensione:
         case "1D":
