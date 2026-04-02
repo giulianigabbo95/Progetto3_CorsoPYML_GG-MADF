@@ -15,8 +15,8 @@ import ast
 import numpy as np
 
 
-FILE_OUTPUT = "operazioni.txt"
-FILE_INPUT = "matrici.txt"
+FILE_OUTPUT = r"C:/Users/Gahab/Documents/GitHub/Corso_PyML_Progetto3-Gruppo_GG-MADF/operazioni.txt"
+FILE_INPUT = r"C:/Users/Gahab/Documents/GitHub/Corso_PyML_Progetto3-Gruppo_GG-MADF/matrici.txt"
 
 
 def calcolaStatisticheBase(array):
@@ -57,6 +57,7 @@ def analizzaArray1D(arrei):
     print("Hai scelto 1D")
     print("1. Statistiche Base")
     print("2. Analisi Posizionale")
+    print("3. Cambia Matrice")
     print("0. Torna Indietro")
     scelta = input("Scelta: ")
     match scelta:
@@ -70,6 +71,8 @@ def analizzaArray1D(arrei):
             risultato = performaAnalisiPosizionale(arrei)
             print("L'Analisi Posizionale è:", risultato)
             salvaFile(FILE_OUTPUT, "Analisi Posizionale:", risultato)
+        case "3":
+            arrei = None
         case _:
             print("Scelta Sbagliata")
 
@@ -96,8 +99,6 @@ def caricaListaMatrici(nome_file):
 
 
 def analizzaArray2D(matrice):
-    righe, colonne = matrice.shape
-    
     print("Hai scelto 2D")
     print("1. Somma Colonne")
     print("2. Somma Righe")
@@ -112,31 +113,31 @@ def analizzaArray2D(matrice):
     match scelta:
         case "0":
             return
-        case '1':
+        case "1":
             print(matrice, "\n")
             risultato_somma = calcolaSommaColonne(matrice)
             if risultato_somma is not None:
                 salvaFile(FILE_OUTPUT, "Somma Colonne", risultato_somma)
-        case '2':
+        case "2":
             print(matrice, "\n")
             risultato_somma = calcolaSommaRighe(matrice)
             if risultato_somma is not None:
                 salvaFile(FILE_OUTPUT, "Somma Righe", risultato_somma)
-        case '3':
+        case "3":
             print(matrice, "\n")
             risultato_media = calcolaMediaColonne(matrice)
             if risultato_media is not None:
                 salvaFile(FILE_OUTPUT, "Media Colonne", risultato_media)
-        case '4':
+        case "4":
             print(matrice, "\n")
             risultato_media = calcolaMediaRighe(matrice)
             if risultato_media is not None:
                 salvaFile(FILE_OUTPUT, "Media Righe", risultato_media)
-        case'5':
+        case "5":
             media = matrice.mean()
             print("Media Totale:", media)
             salvaFile(FILE_OUTPUT, "Media Totale", media)
-        case '6':
+        case "6":
             matrice = None
         case _:
             print("Operazione non riconosciuta.")
@@ -160,12 +161,13 @@ while True:
         print("1. Scegli una Matrice dal file di log")
         print("0. Esci")
         scelta_iniziale = input("Cosa vuoi fare? ")
+        print("")
         
         match scelta_iniziale:
-            case '0':
+            case "0":
                 break
             
-            case '1':
+            case "1":
                 lista = caricaListaMatrici(FILE_INPUT)
                 if not lista:
                     print("Nessuna matrice trovata nel file!")
@@ -174,10 +176,10 @@ while True:
                 print("Matrici nel file")
                 for i, m in enumerate(lista):
                     if m.ndim != 2:
-                        tipo = "1D"
+                        dimensione = "1D"
                     else:
-                        tipo ="2D"
-                    print(i, "- Matrice", tipo, "- Shape", m.shape, "\n", m, "\n")
+                        dimensione ="2D"
+                    print(i, "- Matrice", dimensione, "- Shape", m.shape, "\n", m, "\n")
                 
                 try:
                     indice = int(input("Inserisci il numero della matrice da usare: "))
@@ -196,12 +198,15 @@ while True:
         #print("Dimensione dove è stato definito per continuare?")
         #print("Va a Loop senza BREAK")
         #break
+        
         dimensione = matrice.ndim
     
-    match dimensione:
-        case "1D":
-            analizzaArray1D(matrice)
-        case "2D":
-            analizzaArray2D(matrice)
-        case _:
-            print("Da Implementare!")
+    while True:
+        match dimensione:
+            case "1D":
+                analizzaArray1D(matrice)
+            case "2D":
+                analizzaArray2D(matrice)
+            case _:
+                print("Da Implementare!")
+                break

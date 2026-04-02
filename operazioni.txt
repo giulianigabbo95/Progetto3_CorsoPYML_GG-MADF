@@ -1,0 +1,1 @@
+Operazione: Somma Colonne - (array([ 6, 12, 18, 24]), 'Somma colonne')

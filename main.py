@@ -17,8 +17,9 @@ from func_1D import calcolaStatisticheBase, performaAnalisiPosizionale
 from func_2D import operazioni
 
 
-FILE_OUTPUT = "operazioni.txt"
-FILE_INPUT = "matrici.txt"
+FILE_OUTPUT = r"C:/Users/Gahab/Documents/GitHub/Corso_PyML_Progetto3-Gruppo_GG-MADF/operazioni.txt"
+FILE_INPUT = r"C:/Users/Gahab/Documents/GitHub/Corso_PyML_Progetto3-Gruppo_GG-MADF/matrici.txt"
+
 
 def salvaFile(nome_file, operazione, dati):
     with open(nome_file, "a", encoding="utf-8") as f:
